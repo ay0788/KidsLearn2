@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription | KidsLearn</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="KidsLearn" />
+                    <span class="logo-text">KidsLearn</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="games.html">Jeux</a></li>
+                    <li><a href="parents.html">Parents</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="signup-page">
+        <section class="signup-hero">
+            <div class="container">
+                <h1><span class="highlight-yellow">I</span>nscription</h1>
+                <p>Créez un compte pour commencer l'aventure KidsLearn avec votre enfant</p>
+            </div>
+        </section>
+        
+        <section class="signup-form">
+            <div class="container">
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="parent-name">Votre nom complet</label>
+                        <input type="text" id="parent-name" required placeholder="Ex: Jean Dupont">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="child-name">Nom de l'enfant</label>
+                        <input type="text" id="child-name" required placeholder="Ex: Emma Dupont">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="child-age">Âge de l'enfant</label>
+                        <input type="number" id="child-age" min="3" max="10" required placeholder="Ex: 5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required placeholder="Ex: jean.dupont@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" required placeholder="••••••••">
+                    </div>
+                    
+                    <button type="submit" class="cta-button">Commencer l'aventure</button>
+                    
+                    <p class="login-link">Déjà un compte ? <a href="login.html">Connectez-vous</a></p>
+                </form>
+                
+                <div class="signup-benefits">
+                    <h3>Avantages de l'inscription :</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Suivi de progression détaillé</li>
+                        <li><i class="fas fa-check"></i> Recommandations personnalisées</li>
+                        <li><i class="fas fa-check"></i> Accès à tous les contenus éducatifs</li>
+                        <li><i class="fas fa-check"></i> Rapports d'apprentissage hebdomadaires</li>
+                        <li><i class="fas fa-check"></i> Contenu adapté à l'âge de votre enfant</li>
+                        <li><i class="fas fa-check"></i> Support dédié aux parents</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <span class="logo-text">KidsLearn</span>
+                    </div>
+                    <p>Apprendre en s'amusant depuis 2025.</p>
+                    
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="games.html">Jeux</a></li>
+                        <li><a href="parents.html">Parents</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a>Conditions d'utilisation</a></li>
+                        <li><a>Politique de confidentialité</a></li>
+                        <li><a>Mentions légales</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@kidslearn.com</li>
+                        <li><i class="fas fa-phone"></i> +212 1 23 45 67 89</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 KidsLearn. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/signup.js"></script>
+</body>
+</html>

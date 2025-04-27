@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KidsLearn - Apprendre en s'amusant</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Text center for all sections */
+    .hero-banner,
+    .favorite-lessons,
+    .why-choose-us,
+    .testimonials,
+    .get-started {
+      text-align: center;
+    }
+
+    /* Statistics Section */
+    .statistics {
+      padding: 3rem 0;
+      background-color: #f8f9fa;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      color: #ffc107;
+      margin-bottom: 1rem;
+    }
+
+    .stat-content {
+      color: #333;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 0;
+      color: #28a745;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0;
+      color: #666;
+    }
+
+    /* Hero content */
+    .hero-content {
+      margin-bottom: 2rem;
+    }
+
+    /* Footer Styles */
+    .main-footer {
+      background-color: #111;
+      color: #fff;
+      padding: 3rem 1rem 1rem;
+      margin-top: 3rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .footer-links h4,
+    .footer-contact h4 {
+      color: #ffc107;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-links ul,
+    .footer-contact ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links a,
+    .footer-contact a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a:hover,
+    .footer-contact a:hover {
+      color: #fff;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 36px;
+      margin: 0 0.25rem;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      background-color: #ff69b4;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  </style>
+
+<body data-user-role="<?php echo $_SESSION['role']; ?>">
+  <header class="main-header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/logo.png" alt="KidsLearn" />
+          <span class="logo-text">KidsLearn</span>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Accueil</a></li>
+          <li><a href="games.html">Jeux</a></li>
+          <li><a href="parents.html">Parents</a></li>
+          <li><a href="admin/login.html">Administration</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="container">
+        <div class="hero-content">
+          <h1><span class="highlight-yellow">A</span>pprendre <span class="highlight-white">en</span> <span class="highlight-green">s'amusant!</span></h1>
+           <a href="games.html" class="cta-button">C'est parti !</a>
+        </div>
+        <div class="hero-image">
+          <img src="assets/images/landing.jpg" alt="Enfants apprenant en s'amusant" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="total-users">0</h3>
+                        <p class="stat-label">Utilisateurs</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="total-games">0</h3>
+                        <p class="stat-label">Parties jouées</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="average-score">0</h3>
+                        <p class="stat-label">Score moyen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leçons préférées -->
+    <section class="favorite-lessons">
+        <div class="container">
+            <h2>Nos leçons préférées</h2>
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div class="card-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3>Les Animaux</h3>
+                    <p>Découvrez le monde fascinant des animaux et leur habitat naturel.</p>
+                    <a href="animals.html" class="card-button">Explorer <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="lesson-card">
+                    <div class="card-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Transports</h3>
+                    <p>Explorez les différents moyens de transport du monde entier.</p>
+                    <a href="transports.html" class="card-button">Explorer <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="lesson-card">
+                    <div class="card-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>Alphabet</h3>
+                    <p>Apprenez l'alphabet avec des images colorées et des jeux interactifs.</p>
+                    <a href="alphabet.html" class="card-button">Explorer <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="lesson-card">
+                    <div class="card-icon">
+                        <i class="fas fa-equals"></i>
+                    </div>
+                    <h3>Mathématiques</h3>
+                    <p>Apprenez les mathématiques avec KidsLearn.</p>
+                    <a href="maths.html" class="card-button">Explorer <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-icon">
+                        <i class="fas fa-brush"></i>
+                    </div>
+                    <h3>Couleurs</h3>
+                    <p>Apprenez les couleurs de mainière amusante. </p>
+                    <a href="couleurs.html" class="card-button">Explorer <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <!-- Témoignages des parents -->
+     <section class="testimonials">
+        <div class="container">
+            <h2>Que disent les parents ?</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Ma fille de 5 ans adore KidsLearn! Elle apprend tout en s'amusant et réclame tous les jours de faire ses 'leçons'."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/images/parents.jpg" alt="Parent">
+    
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Enfin une plateforme éducative qui captive mon fils! Les jeux sont intelligents et vraiment éducatifs."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/images/parents1.jpg" alt="Parent">
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Pourquoi choisir KidsLearn -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2>Pourquoi choisir KidsLearn ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Adapté aux enfants</h3>
+                    <p>Interface simple et intuitive spécialement conçue pour les jeunes apprenants.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Apprentissage ludique</h3>
+                    <p>Méthodes pédagogiques basées sur le jeu pour un apprentissage naturel.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Environnement sécurisé</h3>
+                    <p>Espace 100% sécurisé sans publicité ni contenu inapproprié.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started -->
+    <section class="get-started">
+      <div class="container">
+        <div class="get-started-content">
+          <h2>Prêt à commencer l'aventure ?</h2>
+          <p>Inscrivez-vous gratuitement et offrez à votre enfant une expérience d'apprentissage magique !</p>
+          <a href="signup.html" class="cta-button">Inscription gratuite</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="logo">
+            <span class="logo-text">KidsLearn</span>
+          </div>
+          <p>Apprendre en s'amusant depuis 2023.</p>
+          <div class="social-links">
+            <a ><i class="fab fa-facebook-f"></i></a>
+            <a ><i class="fab fa-instagram"></i></a>
+            <a ><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="games.html">Jeux</a></li>
+            <li><a href="parents.html">Parents</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="#">Conditions d'utilisation</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> contact@kidslearn.com</li>
+            <li><i class="fas fa-phone"></i> +212 1 23 45 67 89</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 KidsLearn. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/content.js"></script>
+  
+</body>
+
+<script src="assets/js/content.js"></script>
+
+
+</html>    

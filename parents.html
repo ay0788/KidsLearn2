@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Espace Parents | KidsLearn</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Authentication Section Styles */
+    .auth-section {
+      background-color: #f8f9fa;
+      padding: 3rem 0;
+      min-height: calc(100vh - 200px);
+    }
+
+    .auth-container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #eee;
+    }
+
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .auth-tab.active {
+      color: #ffc107;
+      border-bottom: 2px solid #ffc107;
+    }
+
+    .auth-form {
+      display: none;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .auth-button {
+      width: 100%;
+      padding: 1rem;
+      background-color: #ffc107;
+      color: #333;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .auth-button:hover {
+      background-color: #ffca2c;
+    }
+
+    /* Footer Styles */
+    .main-footer {
+      background-color: #111;
+      color: #fff;
+      padding: 3rem 1rem 1rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .footer-links h4,
+    .footer-contact h4 {
+      color: #ffc107;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-links ul,
+    .footer-contact ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links a,
+    .footer-contact a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a:hover,
+    .footer-contact a:hover {
+      color: #fff;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 36px;
+      margin: 0 0.25rem;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      background-color: #ff69b4;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/logo.png" alt="KidsLearn" />
+          <span class="logo-text">KidsLearn</span>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="games.html">Jeux</a></li>
+          <li><a href="parents.html" class="active">Parents</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Authentication Section -->
+    <section class="auth-section">
+      <div class="container">
+        <div class="auth-container">
+          <div class="auth-tabs">
+            <div class="auth-tab active" onclick="showAuthForm('login')">Connexion</div>
+            <div class="auth-tab" onclick="showAuthForm('signup')">Inscription</div>
+          </div>
+
+          <!-- Login Form -->
+          <form id="login-form" class="auth-form active" action="api/login.php" method="POST">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Mot de passe</label>
+              <input type="password" id="login-password" name="password" required>
+            </div>
+            <button type="submit" class="auth-button">Se connecter</button>
+          </form>
+
+          <!-- Signup Form -->
+          <form id="signup-form" class="auth-form" action="api/signup.php" method="POST">
+            <div class="form-group">
+              <label for="signup-parent-name">Nom du parent</label>
+              <input type="text" id="signup-parent-name" name="parent_name" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-child-name">Nom de l'enfant</label>
+              <input type="text" id="signup-child-name" name="child_name" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-child-age">Âge de l'enfant</label>
+              <input type="number" id="signup-child-age" name="child_age" min="3" max="12" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Mot de passe</label>
+              <input type="password" id="signup-password" name="password" required>
+            </div>
+            <button type="submit" class="auth-button">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="logo">
+            <span class="logo-text">KidsLearn</span>
+          </div>
+          <p>Apprendre en s'amusant depuis 2023.</p>
+          
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="games.html">Jeux</a></li>
+            <li><a href="parents.html">Parents</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <ul>
+            <li><a>Conditions d'utilisation</a></li>
+            <li><a>Politique de confidentialité</a></li>
+            <li><a>Mentions légales</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> contact@kidslearn.com</li>
+            <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 KidsLearn. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Authentication Form Toggle
+    function showAuthForm(formType) {
+      // Update tabs
+      document.querySelectorAll('.auth-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelector(`.auth-tab:nth-child(${formType === 'login' ? 1 : 2})`).classList.add('active');
+
+      // Update forms
+      document.querySelectorAll('.auth-form').forEach(form => {
+        form.classList.remove('active');
+      });
+      document.getElementById(`${formType}-form`).classList.add('active');
+    }
+
+    // Form Submission Handlers
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      
+      try {
+        const response = await fetch('/api/login.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          window.location.href = 'dashboard.html';
+        } else {
+          alert(result.message || 'Erreur de connexion');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Une erreur est survenue lors de la connexion');
+      }
+    });
+
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      
+      try {
+        const response = await fetch('/api/signup.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
+          showAuthForm('login');
+        } else {
+          alert(result.message || 'Erreur lors de l\'inscription');
+        }
+      } catch (error) {
+        console.error('Signup error:', error);
+        alert('Une erreur est survenue lors de l\'inscription');
+      }
+    });
+  </script>
+</body>
+</html>    

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Alphabet | KidsLearn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #b5d2f7;
+            --secondary: #06d6a0;
+            --accent: #ff6b6b;
+            --highlight: #ffd93d;
+            --dark: #2f2f2f;
+            --light: #ffffff;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .lesson-title {
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+
+        .media-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .media-description {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .lesson-content {
+            background-color: #f0f8ff;
+            border-left: 5px solid var(--highlight);
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+
+        .lesson-content h2 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .lesson-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lesson-content li::before {
+            content: "🔤 ";
+            margin-right: 8px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-header">
+            <h1 class="lesson-title">Apprendre l'Alphabet</h1>
+        </div>
+
+        <div class="media-container">
+            <!-- Vidéo intégrée avec iframe -->
+            <div class="media-card">
+                <div class="video-container">
+                    <iframe src="https://www.jublie2.com" allowfullscreen></iframe>
+                </div>
+                <p class="media-description">Chanson de l'alphabet pour apprendre les lettres en chantant</p>
+            </div>
+
+            <!-- Image de l'alphabet -->
+            <div class="media-card">
+                <img src="assets/images/alpha.jpeg" alt="Tableau de l'alphabet">
+                <p class="media-description">Tableau coloré de toutes les lettres de l'alphabet</p>
+            </div>
+
+            <!-- Leçon texte -->
+            <div class="media-card lesson-content">
+                <h2>Leçon : Les Alphabets</h2>
+                <p><strong>Titre :</strong> Apprenons les Lettres de l'Alphabet</p>
+                <p><strong>Objectif :</strong> Reconnaitre les lettres et les associer à des mots.</p>
+                <ul>
+                    <li>A comme Avion ✈️</li>
+                    <li>B comme Ballon 🎈</li>
+                    <li>C comme Chat 🐱</li>
+                    <li>D comme Dauphin 🐬</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="games.html" class="back-button">Retour aux jeux</a>
+        </div>
+    </div>
+</body>
+</html>

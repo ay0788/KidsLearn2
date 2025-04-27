@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord | KidsLearn</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .main-header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .main-nav li {
+            margin-left: 2rem;
+        }
+
+        .main-nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: #ffc107;
+            background-color: rgba(255, 193, 7, 0.1);
+        }
+
+        .welcome-section {
+            padding: 3rem 0;
+            text-align: center;
+            background-image: url('assets/images/landing.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-section {
+            padding: 2rem 0;
+        }
+
+        .category-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 2rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .game-card-content {
+            padding: 1.5rem;
+        }
+
+        .game-card h3 {
+            margin: 0 0 1rem 0;
+            color: #333;
+        }
+
+        .game-card p {
+            color: #666;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .play-button {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #333;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .play-button:hover {
+            background-color: #ffca2c;
+        }
+
+        .logout-button {
+            background-color: #dc3545;
+            color: white !important;
+        }
+
+        .logout-button:hover {
+            background-color: #bb2d3b !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="KidsLearn">
+                    <span class="logo-text">KidsLearn</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dashboard.html" class="active">Accueil</a></li>
+                    <li><a href="games.html">Jeux</a></li>
+                    <li><a href="profile.html">Profil</a></li>
+                    <li><a href="#" class="logout-button" onclick="logout()">Déconnexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <div class="container">
+                <h1>Bienvenue sur KidsLearn !</h1>
+                <p>Choisis un jeu et commence à apprendre en t'amusant !</p>
+            </div>
+        </section>
+
+        <!-- Section Alphabet -->
+        <section class="category-section">
+            <div class="container">
+                <h2 class="category-title">Apprendre l'Alphabet</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <img src="assets/images/alpha.jpeg" alt="Jeu d'alphabet">
+                        <div class="game-card-content">
+                            <h3>L'Alphabet en s'amusant</h3>
+                            <p>Apprends l'alphabet de manière interactive et amusante !</p>
+                            <a href="game/language-journey.html" class="play-button">Jouer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Animaux -->
+        <section class="category-section">
+            <div class="container">
+                <h2 class="category-title">Découvrir les Animaux</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <img src="assets/images/animal.jpg" alt="Jeu des animaux">
+                        <div class="game-card-content">
+                            <h3>Le Monde des Animaux</h3>
+                            <p>Découvre les différents animaux et leurs sons !</p>
+                            <a href="game/science-explorer.html" class="play-button">Jouer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Mathématiques -->
+        <section class="category-section">
+            <div class="container">
+                <h2 class="category-title">Mathématiques</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <img src="assets/images/maths.jpg" alt="Jeu de mathématiques">
+                        <div class="game-card-content">
+                            <h3>Aventure Mathématique</h3>
+                            <p>Apprends les mathématiques en résolvant des problèmes amusants !</p>
+                            <a href="game/math-adventure.html" class="play-button">Jouer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Transport -->
+        <section class="category-section">
+            <div class="container">
+                <h2 class="category-title">Les Transports</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <img src="assets/images/transport.jpg" alt="Jeu des transports">
+                        <div class="game-card-content">
+                            <h3>Les Moyens de Transport</h3>
+                            <p>Découvre les différents moyens de transport !</p>
+                            <a href="game/word-world.html" class="play-button">Jouer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Couleurs -->
+        <section class="category-section">
+            <div class="container">
+                <h2 class="category-title">Les Couleurs</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <img src="assets/images/couleur.jpg" alt="Jeu des couleurs">
+                        <div class="game-card-content">
+                            <h3>Le Monde des Couleurs</h3>
+                            <p>Apprends à reconnaître et nommer les couleurs !</p>
+                            <a href="game/colors.html" class="play-button">Jouer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Vérifier si l'utilisateur est connecté
+        function checkAuth() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Fonction de déconnexion
+        function logout() {
+            localStorage.removeItem('authToken');
+            window.location.href = 'login.html';
+        }
+
+        // Vérifier l'authentification au chargement de la page
+        checkAuth();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux | KidsLearn</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #28a745;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .main-nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .main-nav a.active {
+            color: #28a745;
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .game-content {
+            padding: 1.5rem;
+        }
+
+        .game-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+            color: #333;
+        }
+
+        .game-description {
+            color: #666;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.5;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .age-range {
+            background-color: #ffc107;
+            color: #333;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .category {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .play-button {
+            display: block;
+            background-color: #ffc107;
+            color: #333;
+            text-align: center;
+            padding: 0.75rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .play-button:hover {
+            background-color: #ffca2c;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.png" alt="KidsLearn">
+                    <span class="logo-text">KidsLearn</span>
+                </a>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="games.html" class="active">Jeux</a></li>
+                        <li><a href="parents.html">Parents</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="games-grid">
+                <!-- Aventure Mathématique -->
+                <div class="game-card">
+                    <img src="assets/images/maths.jpg" alt="Jeu de Mathématiques">
+                    <div class="game-content">
+                        <h2 class="game-title">Aventure Mathématique</h2>
+                        <p class="game-description">Apprenez les additions et soustractions en résolvant des énigmes passionnantes !</p>
+                        <div class="game-meta">
+                            <span class="age-range">6-8 ans</span>
+                            <span class="category">Mathématiques</span>
+                        </div>
+                        <a href="game/math-adventure.html" class="play-button">Jouer</a>
+                    </div>
+                </div>
+
+                <!-- Le Monde des Mots -->
+                <div class="game-card">
+                    <img src="assets/images/alpha.jpeg" alt="Jeu de Lecture">
+                    <div class="game-content">
+                        <h2 class="game-title">Le Monde des Mots</h2>
+                        <p class="game-description">Découvrez le plaisir de la lecture à travers des histoires interactives.</p>
+                        <div class="game-meta">
+                            <span class="age-range">3-5 ans</span>
+                            <span class="category">Lecture</span>
+                        </div>
+                        <a href="game/language-journey.html" class="play-button">Jouer</a>
+                    </div>
+                </div>
+
+                <!-- Explorateur Scientifique -->
+                <div class="game-card">
+                    <img src="assets/images/couleur.jpg" alt="Jeu de Sciences">
+                    <div class="game-content">
+                        <h2 class="game-title">Explorateur Scientifique</h2>
+                        <p class="game-description">Explorez le monde fascinant des sciences avec des expériences amusantes.</p>
+                        <div class="game-meta">
+                            <span class="age-range">9-12 ans</span>
+                            <span class="category">Sciences</span>
+                        </div>
+                        <a href="game/science-explorer.html" class="play-button">Jouer</a>
+                    </div>
+                </div>
+
+                <!-- Voyage Linguistique -->
+                <div class="game-card">
+                    <img src="assets/images/animal.jpg" alt="Jeu de Langues">
+                    <div class="game-content">
+                        <h2 class="game-title">Voyage Linguistique</h2>
+                        <p class="game-description">Apprenez l'anglais en explorant différents pays et cultures.</p>
+                        <div class="game-meta">
+                            <span class="age-range">6-8 ans</span>
+                            <span class="category">Langues</span>
+                        </div>
+                        <a href="game/language-journey.html" class="play-button">Jouer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>    

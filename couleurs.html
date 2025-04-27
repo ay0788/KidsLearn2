@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Couleurs | KidsLearn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Même CSS que alphabet.html */
+        :root {
+            --primary: #b5d2f7;
+            --secondary: #06d6a0;
+            --accent: #ff6b6b;
+            --highlight: #ffd93d;
+            --dark: #2f2f2f;
+            --light: #ffffff;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .lesson-title {
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+        
+        .media-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .media-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        video, audio {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .media-description {
+            margin-top: 15px;
+            color: var(--dark);
+        }
+        
+        .back-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-header">
+            <h1 class="lesson-title">Les Couleurs</h1>
+        </div>
+        
+        <div class="media-container">
+            <div class="media-card">
+                <audio controls>
+                    <source src="assets/audio/couleurs.mp3" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'audio.
+                </audio>
+                <p class="media-description">Chanson des couleurs pour apprendre en chantant</p>
+            </div>
+            
+            <div class="media-card">
+                <img src="assets/images/arc-en-ciel.jpg" alt="Arc-en-ciel des couleurs" style="max-height: 500px;">
+                <p class="media-description">Toutes les couleurs de l'arc-en-ciel</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="games.html" class="back-button">Retour aux jeux</a>
+        </div>
+    </div>
+</body>
+</html>

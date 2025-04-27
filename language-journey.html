@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyage Linguistique | KidsLearn</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .game-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .game-header h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .game-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .game-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .game-instructions {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .game-instructions h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .game-instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .game-instructions li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .game-instructions li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ffc107;
+        }
+
+        .game-area {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #eee;
+        }
+
+        .language-exercise {
+            margin-bottom: 2rem;
+        }
+
+        .word-pair {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .word {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .translation-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .check-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .check-button:hover {
+            background: #ffca2c;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 1rem;
+        }
+
+        .feedback {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            min-height: 2rem;
+        }
+
+        .correct {
+            color: #28a745;
+        }
+
+        .incorrect {
+            color: #dc3545;
+        }
+
+        .next-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .next-button:hover {
+            background: #ffca2c;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html">
+                    <img src="../../assets/images/logo.png" alt="KidsLearn">
+                    <span class="logo-text">KidsLearn</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="games.html" class="active">Jeux</a></li>
+                    <li><a href="parents.html">Parents</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="game-container">
+            <div class="game-header">
+                <h1>Voyage Linguistique</h1>
+                <p>Apprenez l'anglais de manière amusante et interactive !</p>
+            </div>
+
+            <div class="game-content">
+                <div class="game-instructions">
+                    <h2>Comment jouer ?</h2>
+                    <ul>
+                        <li>Regardez le mot en français</li>
+                        <li>Essayez de trouver sa traduction en anglais</li>
+                        <li>Écrivez votre réponse</li>
+                        <li>Vérifiez si c'est correct</li>
+                        <li>Gagnez des points pour chaque bonne réponse</li>
+                    </ul>
+                </div>
+
+                <div class="game-area">
+                    <div class="language-exercise">
+                        <div class="word-pair">
+                            <span class="word" id="french-word">Bonjour</span>
+                            <span class="word" id="english-word" style="display: none;">Hello</span>
+                        </div>
+                        <input type="text" class="translation-input" id="translation" placeholder="Traduction en anglais">
+                        <button class="check-button" id="check">Vérifier</button>
+                        <div class="feedback" id="feedback"></div>
+                        <button class="next-button" id="next">Suivant</button>
+                    </div>
+                    <div class="score-display">
+                        Score: <span id="score">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let score = 0;
+        let currentWord = {};
+
+        const words = [
+            { french: "Bonjour", english: "Hello" },
+            { french: "Merci", english: "Thank you" },
+            { french: "Au revoir", english: "Goodbye" },
+            { french: "S'il vous plaît", english: "Please" },
+            { french: "Comment ça va ?", english: "How are you?" }
+        ];
+
+        function displayWord() {
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            document.getElementById('french-word').textContent = currentWord.french;
+            document.getElementById('english-word').textContent = currentWord.english;
+            document.getElementById('translation').value = '';
+            document.getElementById('feedback').textContent = '';
+        }
+
+        function checkTranslation() {
+            const userTranslation = document.getElementById('translation').value.toLowerCase().trim();
+            const correctTranslation = currentWord.english.toLowerCase();
+            const feedback = document.getElementById('feedback');
+
+            if (userTranslation === correctTranslation) {
+                score += 10;
+                feedback.textContent = 'Bravo ! Bonne réponse !';
+                feedback.className = 'feedback correct';
+                document.getElementById('english-word').style.display = 'inline';
+            } else {
+                feedback.textContent = 'Oops ! Essayez encore !';
+                feedback.className = 'feedback incorrect';
+            }
+
+            document.getElementById('score').textContent = score;
+        }
+
+        document.getElementById('check').addEventListener('click', checkTranslation);
+        document.getElementById('translation').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkTranslation();
+            }
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            document.getElementById('english-word').style.display = 'none';
+            displayWord();
+        });
+
+        // Start the game
+        displayWord();
+    </script>
+</body>
+</html>

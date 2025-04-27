@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord Admin | KidsLearn</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            padding: 1rem;
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #ffc107;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-link i {
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: #ffc107;
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Action Buttons */
+        .action-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .add-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .add-button:hover {
+            background-color: #218838;
+        }
+
+        .edit-button {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        /* Page Header with Button */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Media Grid */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .media-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .media-preview {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .media-info {
+            padding: 1rem;
+        }
+
+        .media-title {
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+
+        .media-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Styles pour les nouveaux champs de contenu */
+        .content-fields {
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        .quiz-option, .matching-pair {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-option input[type="text"], .matching-pair input[type="text"] {
+            flex: 1;
+        }
+
+        #table-editor table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        #table-editor td {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+        }
+
+        #table-editor input {
+            width: 100%;
+            padding: 0.25rem;
+            border: none;
+            background: transparent;
+        }
+
+        #table-editor input:focus {
+            outline: 2px solid #ffc107;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>KidsLearn Admin</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" onclick="showSection('dashboard')">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('categories')">
+                        <i class="fas fa-folder"></i>
+                        Catégories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('elements')">
+                        <i class="fas fa-puzzle-piece"></i>
+                        Éléments
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('media')">
+                        <i class="fas fa-images"></i>
+                        Médias
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('users')">
+                        <i class="fas fa-users"></i>
+                        Utilisateurs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('games')">
+                        <i class="fas fa-gamepad"></i>
+                        Jeux
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('stats')">
+                        <i class="fas fa-chart-bar"></i>
+                        Statistiques
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section">
+                <div class="page-header">
+                    <h2>Tableau de bord</h2>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Utilisateurs</h3>
+                            <i class="fas fa-users card-icon"></i>
+                        </div>
+                        <p class="card-value" id="total-users">0</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Jeux joués</h3>
+                            <i class="fas fa-gamepad card-icon"></i>
+                        </div>
+                        <p class="card-value" id="total-games">0</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Score moyen</h3>
+                            <i class="fas fa-star card-icon"></i>
+                        </div>
+                        <p class="card-value" id="average-score">0</p>
+                    </div>
+                </div>
+
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Utilisateur</th>
+                                <th>Dernier jeu</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-activities">
+                            <!-- Les données seront chargées dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users-section" style="display: none;">
+                <div class="page-header">
+                    <h2>Gestion des utilisateurs</h2>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Date d'inscription</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-list">
+                            <!-- Les données seront chargées dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Games Section -->
+            <section id="games-section" style="display: none;">
+                <div class="page-header">
+                    <h2>Gestion des jeux</h2>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Jeu</th>
+                                <th>Catégorie</th>
+                                <th>Niveau</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="games-list">
+                            <!-- Les données seront chargées dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section id="stats-section" style="display: none;">
+                <div class="page-header">
+                    <h2>Statistiques</h2>
+                </div>
+                <!-- Graphiques et statistiques seront ajoutés ici -->
+            </section>
+
+            <!-- Categories Section -->
+            <section id="categories-section" style="display: none;">
+                <div class="page-header">
+                    <h2>Gestion des catégories</h2>
+                    <button class="action-button add-button" onclick="showAddCategoryModal()">
+                        <i class="fas fa-plus"></i> Ajouter une catégorie
+                    </button>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Icône</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categories-list">
+                            <!-- Les données seront chargées dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Elements Section -->
+            <section id="elements-section" style="display: none;">
+                <div class="page-header">
+                    <h2>Gestion des éléments</h2>
+                    <button class="action-button add-button" onclick="showAddElementModal()">
+                        <i class="fas fa-plus"></i> Ajouter un élément
+                    </button>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Catégorie</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="elements-list">
+                            <!-- Les données seront chargées dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Media Section -->
+            <section id="media-section" style="display: none;">
+                <div class="page-header">
+                    <h2>Gestion des médias</h2>
+                    <button class="action-button add-button" onclick="showAddMediaModal()">
+                        <i class="fas fa-plus"></i> Ajouter un média
+                    </button>
+                </div>
+                <div class="media-grid" id="media-list">
+                    <!-- Les médias seront chargés dynamiquement -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modales -->
+    <!-- Modal Catégorie -->
+    <div id="category-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ajouter une catégorie</h3>
+                <span class="close-modal" onclick="closeModal('category-modal')">&times;</span>
+            </div>
+            <form id="category-form">
+                <div class="form-group">
+                    <label for="category-name">Nom</label>
+                    <input type="text" id="category-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="category-description">Description</label>
+                    <textarea id="category-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category-icon">Icône (classe Font Awesome)</label>
+                    <input type="text" id="category-icon" placeholder="fas fa-folder">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="action-button" onclick="closeModal('category-modal')">Annuler</button>
+                    <button type="submit" class="action-button add-button">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Élément -->
+    <div id="element-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ajouter un élément</h3>
+                <span class="close-modal" onclick="closeModal('element-modal')">&times;</span>
+            </div>
+            <form id="element-form">
+                <div class="form-group">
+                    <label for="element-name">Nom</label>
+                    <input type="text" id="element-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="element-category">Catégorie</label>
+                    <select id="element-category" required>
+                        <!-- Les catégories seront chargées dynamiquement -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="element-type">Type de contenu</label>
+                    <select id="element-type" required onchange="showContentFields()">
+                        <option value="text">Texte simple</option>
+                        <option value="table">Tableau</option>
+                        <option value="list">Liste à puces</option>
+                        <option value="image">Image</option>
+                        <option value="audio">Audio</option>
+                        <option value="video">Vidéo</option>
+                        <option value="quiz">Quiz</option>
+                        <option value="matching">Exercice d'association</option>
+                    </select>
+                </div>
+
+                <!-- Champs spécifiques pour chaque type de contenu -->
+                <div id="text-fields" class="content-fields">
+                    <div class="form-group">
+                        <label for="text-content">Contenu texte</label>
+                        <textarea id="text-content" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div id="table-fields" class="content-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="table-rows">Nombre de lignes</label>
+                        <input type="number" id="table-rows" min="1" value="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="table-cols">Nombre de colonnes</label>
+                        <input type="number" id="table-cols" min="1" value="2">
+                    </div>
+                    <button type="button" class="action-button" onclick="generateTableEditor()">Générer le tableau</button>
+                    <div id="table-editor" class="form-group">
+                        <!-- Le tableau sera généré ici -->
+                    </div>
+                </div>
+
+                <div id="list-fields" class="content-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="list-items">Éléments de la liste (un par ligne)</label>
+                        <textarea id="list-items" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div id="media-fields" class="content-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="media-file">Fichier</label>
+                        <input type="file" id="media-file">
+                    </div>
+                    <div class="form-group">
+                        <label for="media-description">Description</label>
+                        <textarea id="media-description" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div id="quiz-fields" class="content-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="quiz-question">Question</label>
+                        <textarea id="quiz-question" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Options</label>
+                        <div id="quiz-options">
+                            <div class="quiz-option">
+                                <input type="text" placeholder="Option 1">
+                                <input type="checkbox"> Correcte
+                            </div>
+                            <div class="quiz-option">
+                                <input type="text" placeholder="Option 2">
+                                <input type="checkbox"> Correcte
+                            </div>
+                        </div>
+                        <button type="button" class="action-button" onclick="addQuizOption()">+ Ajouter une option</button>
+                    </div>
+                </div>
+
+                <div id="matching-fields" class="content-fields" style="display: none;">
+                    <div class="form-group">
+                        <label>Paires à associer</label>
+                        <div id="matching-pairs">
+                            <div class="matching-pair">
+                                <input type="text" placeholder="Élément gauche">
+                                <span>→</span>
+                                <input type="text" placeholder="Élément droite">
+                            </div>
+                            <div class="matching-pair">
+                                <input type="text" placeholder="Élément gauche">
+                                <span>→</span>
+                                <input type="text" placeholder="Élément droite">
+                            </div>
+                        </div>
+                        <button type="button" class="action-button" onclick="addMatchingPair()">+ Ajouter une paire</button>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="action-button" onclick="closeModal('element-modal')">Annuler</button>
+                    <button type="submit" class="action-button add-button">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Média -->
+    <div id="media-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ajouter un média</h3>
+                <span class="close-modal" onclick="closeModal('media-modal')">&times;</span>
+            </div>
+            <form id="media-form">
+                <div class="form-group">
+                    <label for="media-title">Titre</label>
+                    <input type="text" id="media-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="media-file">Fichier</label>
+                    <input type="file" id="media-file" required>
+                </div>
+                <div class="form-group">
+                    <label for="media-type">Type</label>
+                    <select id="media-type" required>
+                        <option value="image">Image</option>
+                        <option value="audio">Audio</option>
+                        <option value="video">Vidéo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="media-description">Description</label>
+                    <textarea id="media-description" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="action-button" onclick="closeModal('media-modal')">Annuler</button>
+                    <button type="submit" class="action-button add-button">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        // Vérifier l'authentification
+        function checkAuth() {
+            const token = localStorage.getItem('adminToken');
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Changer de section
+        function showSection(sectionName) {
+            const sections = ['dashboard', 'users', 'games', 'stats'];
+            sections.forEach(section => {
+                document.getElementById(`${section}-section`).style.display = 'none';
+                document.querySelector(`[onclick="showSection('${section}')"]`).classList.remove('active');
+            });
+            document.getElementById(`${sectionName}-section`).style.display = 'block';
+            document.querySelector(`[onclick="showSection('${sectionName}')"]`).classList.add('active');
+
+            // Charger les données spécifiques à la section
+            switch(sectionName) {
+                case 'categories':
+                    loadCategories();
+                    break;
+                case 'elements':
+                    loadElements();
+                    break;
+                case 'media':
+                    loadMedia();
+                    break;
+                case 'users':
+                    loadUsers();
+                    break;
+            }
+        }
+
+        // Déconnexion
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = 'login.html';
+        }
+
+        // Charger les données du tableau de bord
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('../api/admin/dashboard.php', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                    }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('total-users').textContent = data.stats.totalUsers;
+                    document.getElementById('total-games').textContent = data.stats.totalGames;
+                    document.getElementById('average-score').textContent = data.stats.averageScore;
+                    
+                    // Charger les activités récentes
+                    const activities = document.getElementById('recent-activities');
+                    activities.innerHTML = data.recentActivities.map(activity => `
+                        <tr>
+                            <td>${activity.username}</td>
+                            <td>${activity.game}</td>
+                            <td>${activity.score}</td>
+                            <td>${activity.date}</td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Erreur lors du chargement des données:', error);
+            }
+        }
+
+        // Initialisation
+        checkAuth();
+        loadDashboardData();
+    </script>
+</body>
+</html> 

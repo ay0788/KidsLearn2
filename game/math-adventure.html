@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventure Mathématique | KidsLearn</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .game-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .game-header h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .game-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .game-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .game-instructions {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .game-instructions h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .game-instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .game-instructions li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .game-instructions li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ffc107;
+        }
+
+        .game-area {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #eee;
+        }
+
+        .math-problem {
+            font-size: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            color: #333;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #ffca2c;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 1rem;
+        }
+
+        .feedback {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            min-height: 2rem;
+        }
+
+        .correct {
+            color: #28a745;
+        }
+
+        .incorrect {
+            color: #dc3545;
+        }
+
+        /* Updated Navigation Styles */
+        .main-header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .main-nav li {
+            margin-left: 2rem;
+        }
+
+        .main-nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: #ffc107;
+            background-color: rgba(255, 193, 7, 0.1);
+        }
+
+        .main-nav a.active {
+            color: #ffc107;
+            background-color: rgba(255, 193, 7, 0.1);
+        }
+
+        .login-button {
+            background-color: #ffc107;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #ffca2c;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html">
+                    <img src="../../assets/images/logo.png" alt="KidsLearn">
+                    <span class="logo-text">KidsLearn</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">Accueil</a></li>
+                    <li><a href="../../games.html" class="active">Jeux</a></li>
+                    <li><a href="../../parents.html">Parents</a></li>
+                    <li><a href="../../parents.html" class="login-button">Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="game-container">
+            <div class="game-header">
+                <h1>Aventure Mathématique</h1>
+                <p>Apprenez les additions et soustractions en résolvant des énigmes passionnantes !</p>
+            </div>
+
+            <div class="game-content">
+                <div class="game-instructions">
+                    <h2>Comment jouer ?</h2>
+                    <ul>
+                        <li>Résolvez les problèmes mathématiques qui apparaissent</li>
+                        <li>Entrez votre réponse dans la case prévue</li>
+                        <li>Cliquez sur "Vérifier" pour voir si votre réponse est correcte</li>
+                        <li>Gagnez des points pour chaque bonne réponse</li>
+                        <li>Essayez d'obtenir le meilleur score possible !</li>
+                    </ul>
+                </div>
+
+                <div class="game-area">
+                    <div class="math-problem" id="problem">5 + 3 = ?</div>
+                    <input type="number" class="answer-input" id="answer" placeholder="Votre réponse">
+                    <button class="submit-button" id="submit">Vérifier</button>
+                    <div class="score-display">
+                        Score: <span id="score">0</span>
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let score = 0;
+        let currentProblem = {};
+
+        function generateProblem() {
+            const operations = ['+', '-'];
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+            let num1, num2;
+
+            if (operation === '+') {
+                num1 = Math.floor(Math.random() * 10);
+                num2 = Math.floor(Math.random() * 10);
+            } else {
+                num1 = Math.floor(Math.random() * 10) + 5;
+                num2 = Math.floor(Math.random() * 5);
+            }
+
+            currentProblem = {
+                num1,
+                num2,
+                operation,
+                answer: operation === '+' ? num1 + num2 : num1 - num2
+            };
+
+            document.getElementById('problem').textContent = 
+                `${num1} ${operation} ${num2} = ?`;
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('answer').value);
+            const feedback = document.getElementById('feedback');
+
+            if (userAnswer === currentProblem.answer) {
+                score += 10;
+                feedback.textContent = 'Bravo ! Bonne réponse !';
+                feedback.className = 'feedback correct';
+            } else {
+                feedback.textContent = 'Oops ! Essayez encore !';
+                feedback.className = 'feedback incorrect';
+            }
+
+            document.getElementById('score').textContent = score;
+            document.getElementById('answer').value = '';
+            generateProblem();
+        }
+
+        document.getElementById('submit').addEventListener('click', checkAnswer);
+        document.getElementById('answer').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+
+        // Start the game
+        generateProblem();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<header class="main-header"></header>>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Monde des Mots | KidsLearn</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            }
+
+        .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        }   
+        .game-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .game-header h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .game-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .game-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .game-instructions {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .game-instructions h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .game-instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .game-instructions li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .game-instructions li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ffc107;
+        }
+
+        .game-area {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #eee;
+        }
+
+        .story-container {
+            margin-bottom: 2rem;
+        }
+
+        .story-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .word-choice {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .word-button {
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .word-button:hover {
+            background: #ffc107;
+            border-color: #ffc107;
+        }
+
+        .word-button.correct {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .word-button.incorrect {
+            background: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+
+        .next-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #ffc107;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .next-button:hover {
+            background: #ffca2c;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 1rem;
+        }
+
+        .main-header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav li {
+            margin-left: 2rem;
+        }
+
+        .main-nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: #ffc107;
+            background-color: rgba(255, 193, 7, 0.1);
+        }
+
+        .main-nav a.active {
+            color: #ffc107;
+            background-color: rgba(255, 193, 7, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="KidsLearn">
+                    <span class="logo-text">KidsLearn</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="games.html" class="active">Jeux</a></li>
+                    <li><a href="parents.html">Parents</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+         <div class="container">
+            <div class="logo">
+              <a href="index.html">
+                <img src="assets/images/logo.png" alt="KidsLearn" />
+                <span class="logo-text">KidsLearn</span>
+              </a>
+            </div>
+            <nav class="main-nav">
+              <ul>
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="games.html">Jeux</a></li>
+                <li><a href="parents.html">Parents</a></li>
+              </ul>
+            </nav>
+          </div>
+      
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html">
+                    <img src="assets\images\logo.png" alt="KidsLearn">
+                    <span class="logo-text">KidsLearn</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">Accueil</a></li>
+                    <li><a href="../../games.html">Jeux</a></li>
+                    <li><a href="../../parents.html">Parents</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="game-container">
+            <div class="game-header">
+                <h1>Le Monde des Mots</h1>
+                <p>Découvrez le plaisir de la lecture à travers des histoires interactives.</p>
+            </div>
+
+            <div class="game-content">
+                <div class="game-instructions">
+                    <h2>Comment jouer ?</h2>
+                    <ul>
+                        <li>Lisez l'histoire qui apparaît</li>
+                        <li>Choisissez le mot qui complète correctement la phrase</li>
+                        <li>Cliquez sur le mot que vous pensez être correct</li>
+                        <li>Gagnez des points pour chaque bonne réponse</li>
+                        <li>Passez à l'histoire suivante en cliquant sur "Suivant"</li>
+                    </ul>
+                </div>
+
+                <div class="game-area">
+                    <div class="story-container">
+                        <p class="story-text" id="story">Le petit chat ___ dans le jardin.</p>
+                        <div class="word-choice" id="word-choice">
+                            <button class="word-button" data-word="joue">joue</button>
+                            <button class="word-button" data-word="mange">mange</button>
+                            <button class="word-button" data-word="dort">dort</button>
+                            <button class="word-button" data-word="court">court</button>
+                        </div>
+                    </div>
+                    <button class="next-button" id="next">Suivant</button>
+                    <div class="score-display">
+                        Score: <span id="score">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let score = 0;
+        let currentStory = {};
+
+        const stories = [
+            {
+                text: "Le petit chat ___ dans le jardin.",
+                correctWord: "joue",
+                options: ["joue", "mange", "dort", "court"]
+            },
+            {
+                text: "La maman ___ un gâteau pour son enfant.",
+                correctWord: "prépare",
+                options: ["prépare", "mange", "regarde", "écrit"]
+            },
+            {
+                text: "Le soleil ___ dans le ciel bleu.",
+                correctWord: "brille",
+                options: ["brille", "pleut", "neige", "court"]
+            }
+        ];
+
+        function displayStory() {
+            currentStory = stories[Math.floor(Math.random() * stories.length)];
+            document.getElementById('story').textContent = currentStory.text;
+            
+            const wordChoice = document.getElementById('word-choice');
+            wordChoice.innerHTML = '';
+            
+            currentStory.options.forEach(word => {
+                const button = document.createElement('button');
+                button.className = 'word-button';
+                button.textContent = word;
+                button.dataset.word = word;
+                button.addEventListener('click', checkAnswer);
+                wordChoice.appendChild(button);
+            });
+        }
+
+        function checkAnswer(e) {
+            const selectedWord = e.target.dataset.word;
+            const buttons = document.querySelectorAll('.word-button');
+            
+            buttons.forEach(button => {
+                button.disabled = true;
+                if (button.dataset.word === currentStory.correctWord) {
+                    button.classList.add('correct');
+                } else if (button === e.target) {
+                    button.classList.add('incorrect');
+                }
+            });
+
+            if (selectedWord === currentStory.correctWord) {
+                score += 10;
+                document.getElementById('score').textContent = score;
+            }
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            const buttons = document.querySelectorAll('.word-button');
+            buttons.forEach(button => {
+                button.disabled = false;
+                button.classList.remove('correct', 'incorrect');
+            });
+            displayStory();
+        });
+
+        // Start the game
+        displayStory();
+    </script>
+</body>
+</html>

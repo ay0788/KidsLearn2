@@ -1,4 +1,5 @@
-# KidsLearn2 : Plateforme Éducative Interactive pour Enfants 🎨📚  
+# KidsLearn2 : Plateforme Éducative Interactive pour Enfants 📚  
+![Logo de KidsLearn2](assets/images/landing.jpg)  
 
 **KidsLearn2** est une plateforme ludique conçue pour stimuler l'apprentissage des enfants à travers des outils adaptés, des jeux éducatifs et des activités créatives. Idéale pour les parents et enseignants !  
 

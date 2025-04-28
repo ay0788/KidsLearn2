@@ -15,7 +15,7 @@
 
 ## CONTRIBUTEURS ✨  
 Un grand merci à l'équipe derrière ce projet :  
-- **Hajar Ait Lakssir** (Groupe B)  
+- **Hajar AitLakssir** (Groupe B)  
 - **Sdour Aya** (Groupe A)  
 - **Khadija El Idrissi El Mourabiti** (Groupe A)  
 
